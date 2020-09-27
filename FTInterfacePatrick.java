@@ -1,16 +1,19 @@
 import java.io.FileNotFoundException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class FTInterfacePatrick {
+public class FTInterfacePatrickVER1 {
 
-	private static void addFlight(Scanner in) {
-		System.out.print("Enter flight information (fight number) (time XX:XX am/pm) (status): ");
+	
+	private static void addFlight(Scanner in, HashTableMap flightInfo) {
+		System.out.print("Enter flight information (fight number) (Destination) (time XX:XX-am/pm) (status): ");
 		String input = in.nextLine();
 		if (input.split(" ").length == 4) {		
 			String fn = input.split(" ")[0];
-			String time = input.split(" ")[1] + " " + input.split(" ")[2];
+			String destination = input.split(" ")[1];
+			String time = input.split(" ")[2];
 			String stat = input.split(" ")[3];
-			// calls method adding flight info with arguments fn time stat
+			flightInfo.put(fn, destination, time, stat);// calls method adding flight info with arguments fn time stat
 			System.out.println("Flight information added");
 		} else {
 			System.out.println("Invalid flight information syntax.");
@@ -18,24 +21,34 @@ public class FTInterfacePatrick {
 
 	}
 	
-	private static void search(Scanner in) {
+	private static void search(Scanner in, HashTableMap flightInfo) {
 		System.out.print("Enter flight number: ");
 		String input = in.nextLine();
-		String output = "";          //calls method that searches hashTable and outputs flight value information
-		if (output == null) {
-			System.out.println("Flight information not found.");
-			return;
-		} else {
+		try {
+			String output = flightInfo.get(input);          //calls method that searches hashTable and outputs flight value information
 			System.out.println(output);
+		} catch (NoSuchElementException e) {
+			System.out.println("Flight information not found");
 		}
 		
 	}
 	
-	private static void addfile(Scanner in) {
+	
+	private static void addfile(Scanner in, HashTableMap flightInfo) {
 		try {
 			System.out.print("Enter file name: ");
 			String input = in.nextLine();
-			//calls method that looks for file
+			flightInfo file = new flightInfo(input, 1000);
+			file.input(612);
+			//System.out.println(file.getStorage().size());
+			for(int i = 0; i < file.getStorage().size(); i++)   {
+				//System.out.print(file.getStorage().get(i));
+				if(i%4 == 0)    {
+					//System.out.print(file.getStorage().get(i));
+					flightInfo.put(file.getStorage().get(i), file.getStorage().get(i+1), 
+							file.getStorage().get(i+2), file.getStorage().get(i+3)); //calls method that looks for file
+				}
+			}
 		} catch (FileNotFoundException e){
 			System.out.println("file not found");
 			return;
@@ -43,10 +56,10 @@ public class FTInterfacePatrick {
 		System.out.println("Flight information added.");
 	}
 	
-	private static void delete(Scanner in) {
+	private static void delete(Scanner in, HashTableMap flightInfo) {
 		System.out.print("Enter flight number to be deleted: ");
 		String flightNum = in.nextLine();
-		//calls method that deletes flight with argument flightNum
+		flightInfo.remove(flightNum);  		//calls method that deletes flight with argument flightNum
 		if (true) {
 			System.out.println(flightNum + "deleted");
 		} else {
@@ -71,13 +84,13 @@ public class FTInterfacePatrick {
 				"             /_____,'");
 		System.out.println("(A)dd flight information.\n" +
 				   "(C)lear flight information.\n" +
-				   "(L)ookup flight information.\n" + 
+				   "(L)oad flight information.\n" + 
 				   "(S)earch for flight information by flight number.\n" + 
 				   "(?) Display this full menu.\n" + 
 				   "(Q)uit.");
 		System.out.println();
 		System.out.print("Action (? for full menu): ");
-		// calls method that initializes hashTable
+		HashTableMap flightInfo = new HashTableMap(20); // calls method that initializes hashTable
 		while(in.hasNextLine()) { 
 			String input = in.nextLine();
 			if (input.isEmpty()) {
@@ -95,7 +108,7 @@ public class FTInterfacePatrick {
 			} else if (input.toLowerCase().charAt(0) == '?') {
 				System.out.println("(A)dd flight information.\n" +
 						   "(C)lear flight information.\n" +
-						   "(L)ookup flight information.\n" + 
+						   "(L)oad flight information.\\n" + 
 						   "(S)earch for flight information by flight number.\n" + 
 						   "(?) Display this full menu.\n" + 
 						   "(Q)uit.");
@@ -103,28 +116,28 @@ public class FTInterfacePatrick {
 				System.out.print("Action (? for full menu): ");
 				
 			} else if (input.toLowerCase().charAt(0) == 'a') {
-				addFlight(in);
+				addFlight(in, flightInfo);
 				System.out.println();
 				System.out.print("Action (? for full menu): ");
 				
 			} else if (input.toLowerCase().charAt(0) == 'c') {
-				//calls method that empties hashTable
+				flightInfo.clear();         //calls method that empties hashTable
 				System.out.println("Flights deleted");
 				System.out.println();
 				System.out.print("Action (? for full menu): ");
 				
 			} else if (input.toLowerCase().charAt(0) == 'd') {
-				delete(in);
+				delete(in, flightInfo);
 				System.out.println();
 				System.out.print("Action (? for full menu): ");
 				
 			} else if (input.toLowerCase().charAt(0) == 'l') {
-				addfile(in);
+				addfile(in, flightInfo);
 				System.out.println();
 				System.out.print("Action (? for full menu): ");
 				
 			} else if (input.toLowerCase().charAt(0) == 's') {
-				search(in);
+				search(in, flightInfo);
 				System.out.println();
 				System.out.print("Action (? for full menu): ");
 				
@@ -135,7 +148,7 @@ public class FTInterfacePatrick {
 				System.out.println("Unknown option: " + input.toLowerCase().charAt(0));
 				System.out.println("(A)dd flight information.\n" +
 						   "(C)lear flight information.\n" +
-						   "(L)ookup flight information.\n" + 
+						   "(L)oad flight information.\n" + 
 						   "(S)earch for flight information by flight number.\n" + 
 						   "(?) Display this full menu.\n" + 
 						   "(Q)uit.");
