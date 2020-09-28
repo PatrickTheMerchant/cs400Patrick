@@ -15,12 +15,13 @@ import java.util.Scanner;
  */
 public class FTInterfacePatrickVER1 {
 	
+	public static HashTableMap flightInfo = new HashTableMap(20);
 	/**
 	 * Adds flight information to hash table 
 	 * @param in scanner
 	 * @param flightInfo hash table
 	 */
-	private static void addFlight(Scanner in, HashTableMap flightInfo) {
+	public static void addFlight(Scanner in) {
 		System.out.print("Enter flight information (fight number) (Destination) (time XX:XX-am/pm) (status): ");
 		String input = in.nextLine();
 		if (input.split(" ").length == 4) {		
@@ -41,7 +42,7 @@ public class FTInterfacePatrickVER1 {
 	 * @param in scanner
 	 * @param flightInfo hash table
 	 */
-	private static void search(Scanner in, HashTableMap flightInfo) {
+	public static void search(Scanner in) {
 		System.out.print("Enter flight number: ");
 		String input = in.nextLine();
 		try {
@@ -58,7 +59,7 @@ public class FTInterfacePatrickVER1 {
 	 * @param in scanner
 	 * @param flightInfo hash table
 	 */
-	private static void addfile(Scanner in, HashTableMap flightInfo) {
+	public static void addfile(Scanner in) {
 		try {
 			System.out.print("Enter file name: ");
 			String input = in.nextLine();
@@ -82,7 +83,7 @@ public class FTInterfacePatrickVER1 {
 	 * @param in scanner
 	 * @param flightInfo hash table
 	 */
-	private static void delete(Scanner in, HashTableMap flightInfo) {
+	public static void delete(Scanner in) {
 		System.out.print("Enter flight number to be deleted: ");
 		String flightNum = in.nextLine();
 		flightInfo.remove(flightNum);  		                             //calls method that deletes flight with argument flightNum
@@ -148,7 +149,7 @@ public class FTInterfacePatrickVER1 {
 				System.out.print("Action (? for full menu): ");
 				
 			} else if (input.toLowerCase().charAt(0) == 'a') {
-				addFlight(in, flightInfo);
+				addFlight(in);
 				System.out.println();
 				System.out.print("Action (? for full menu): ");
 				
@@ -159,17 +160,17 @@ public class FTInterfacePatrickVER1 {
 				System.out.print("Action (? for full menu): ");
 				
 			} else if (input.toLowerCase().charAt(0) == 'd') {
-				delete(in, flightInfo);
+				delete(in);
 				System.out.println();
 				System.out.print("Action (? for full menu): ");
 				
 			} else if (input.toLowerCase().charAt(0) == 'l') {
-				addfile(in, flightInfo);
+				addfile(in);
 				System.out.println();
 				System.out.print("Action (? for full menu): ");
 				
 			} else if (input.toLowerCase().charAt(0) == 's') {
-				search(in, flightInfo);
+				search(in);
 				System.out.println();
 				System.out.print("Action (? for full menu): ");
 				
