@@ -42,7 +42,7 @@ public class FTInterfacePatrickVER1 {
 	 * @param in scanner
 	 * @param flightInfo hash table
 	 */
-	public static void search(Scanner in) {
+	private static void search(Scanner in) {
 		System.out.print("Enter flight number: ");
 		String input = in.nextLine();
 		try {
