@@ -1,10 +1,25 @@
+// --== CS400 File Header Information ==--
+// Name: Patrick Merchant
+// Email: plmerchant@wisc.edu
+// Team: GC
+// TA: Dan
+// Lecturer: Florian
+// Notes to Grader: none
+
 import java.io.FileNotFoundException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * Interface for the flight tracker.
+ */
 public class FTInterfacePatrickVER1 {
-
 	
+	/**
+	 * Adds flight information to hash table 
+	 * @param in scanner
+	 * @param flightInfo hash table
+	 */
 	private static void addFlight(Scanner in, HashTableMap flightInfo) {
 		System.out.print("Enter flight information (fight number) (Destination) (time XX:XX-am/pm) (status): ");
 		String input = in.nextLine();
@@ -13,7 +28,7 @@ public class FTInterfacePatrickVER1 {
 			String destination = input.split(" ")[1];
 			String time = input.split(" ")[2];
 			String stat = input.split(" ")[3];
-			flightInfo.put(fn, destination, time, stat);// calls method adding flight info with arguments fn time stat
+			flightInfo.put(fn, destination, time, stat);                 // calls method adding flight info with arguments fn time stat
 			System.out.println("Flight information added");
 		} else {
 			System.out.println("Invalid flight information syntax.");
@@ -21,6 +36,11 @@ public class FTInterfacePatrickVER1 {
 
 	}
 	
+	/**
+	 * searches hash table for flight information based on input flight number
+	 * @param in scanner
+	 * @param flightInfo hash table
+	 */
 	private static void search(Scanner in, HashTableMap flightInfo) {
 		System.out.print("Enter flight number: ");
 		String input = in.nextLine();
@@ -33,20 +53,21 @@ public class FTInterfacePatrickVER1 {
 		
 	}
 	
-	
+	/**
+	 * searches for file with flight information and adds all flight information into hash table.
+	 * @param in scanner
+	 * @param flightInfo hash table
+	 */
 	private static void addfile(Scanner in, HashTableMap flightInfo) {
 		try {
 			System.out.print("Enter file name: ");
 			String input = in.nextLine();
 			flightInfo file = new flightInfo(input, 1000);
 			file.input(612);
-			//System.out.println(file.getStorage().size());
 			for(int i = 0; i < file.getStorage().size(); i++)   {
-				//System.out.print(file.getStorage().get(i));
 				if(i%4 == 0)    {
-					//System.out.print(file.getStorage().get(i));
 					flightInfo.put(file.getStorage().get(i), file.getStorage().get(i+1), 
-							file.getStorage().get(i+2), file.getStorage().get(i+3)); //calls method that looks for file
+							file.getStorage().get(i+2), file.getStorage().get(i+3));                 //calls method that looks for file
 				}
 			}
 		} catch (FileNotFoundException e){
@@ -56,10 +77,15 @@ public class FTInterfacePatrickVER1 {
 		System.out.println("Flight information added.");
 	}
 	
+	/**
+	 * deletes flight information from hash table based on input flight number
+	 * @param in scanner
+	 * @param flightInfo hash table
+	 */
 	private static void delete(Scanner in, HashTableMap flightInfo) {
 		System.out.print("Enter flight number to be deleted: ");
 		String flightNum = in.nextLine();
-		flightInfo.remove(flightNum);  		//calls method that deletes flight with argument flightNum
+		flightInfo.remove(flightNum);  		                             //calls method that deletes flight with argument flightNum
 		if (true) {
 			System.out.println(flightNum + "deleted");
 		} else {
@@ -67,6 +93,10 @@ public class FTInterfacePatrickVER1 {
 		}
 	}
 	
+	/**
+	 * runs the interface that prompts user commands and reads user commands.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Welcome to O'Hare Flight Traker!");
@@ -84,13 +114,14 @@ public class FTInterfacePatrickVER1 {
 				"             /_____,'");
 		System.out.println("(A)dd flight information.\n" +
 				   "(C)lear flight information.\n" +
+				   "(D)elete flight information by flight number.\n" +
 				   "(L)oad flight information.\n" + 
 				   "(S)earch for flight information by flight number.\n" + 
 				   "(?) Display this full menu.\n" + 
 				   "(Q)uit.");
 		System.out.println();
 		System.out.print("Action (? for full menu): ");
-		HashTableMap flightInfo = new HashTableMap(20); // calls method that initializes hashTable
+		HashTableMap flightInfo = new HashTableMap(20);                     // calls method that initializes hashTable
 		while(in.hasNextLine()) { 
 			String input = in.nextLine();
 			if (input.isEmpty()) {
@@ -108,6 +139,7 @@ public class FTInterfacePatrickVER1 {
 			} else if (input.toLowerCase().charAt(0) == '?') {
 				System.out.println("(A)dd flight information.\n" +
 						   "(C)lear flight information.\n" +
+						   "(D)elete flight information by flight number.\n" +
 						   "(L)oad flight information.\\n" + 
 						   "(S)earch for flight information by flight number.\n" + 
 						   "(?) Display this full menu.\n" + 
@@ -121,7 +153,7 @@ public class FTInterfacePatrickVER1 {
 				System.out.print("Action (? for full menu): ");
 				
 			} else if (input.toLowerCase().charAt(0) == 'c') {
-				flightInfo.clear();         //calls method that empties hashTable
+				flightInfo.clear();                                                       //calls method that empties hashTable
 				System.out.println("Flights deleted");
 				System.out.println();
 				System.out.print("Action (? for full menu): ");
@@ -148,6 +180,7 @@ public class FTInterfacePatrickVER1 {
 				System.out.println("Unknown option: " + input.toLowerCase().charAt(0));
 				System.out.println("(A)dd flight information.\n" +
 						   "(C)lear flight information.\n" +
+						   "(D)elete flight information by flight number.\n" +
 						   "(L)oad flight information.\n" + 
 						   "(S)earch for flight information by flight number.\n" + 
 						   "(?) Display this full menu.\n" + 
@@ -158,10 +191,20 @@ public class FTInterfacePatrickVER1 {
 		}
 		in.close();
 		System.out.println();
+		System.out.println("             .------,\r\n" + 
+				"              =\\      \\\r\n" + 
+				" .---.         =\\      \\\r\n" + 
+				" | C~ \\         =\\      \\\r\n" + 
+				" |     `----------'------'----------,\r\n" + 
+				".'     LI.-.LI LI LI LI LI LI LI.-.LI`-.\r\n" + 
+				"\\ _/.____|_|______.------,______|_|_____)\r\n" + 
+				"                 /      /\r\n" + 
+				"               =/      /\r\n" + 
+				"              =/      /\r\n" + 
+				"             =/      /\r\n" + 
+				"             /_____,'");
 		System.out.println("Blue skies and tailwinds!");
 	}
-
-
 
 
 }
