@@ -1,8 +1,23 @@
-iimport java.io.FileNotFoundException;
+// --== CS400 File Header Information ==--
+// Name: Patrick Merchant
+// Email: plmerchant@wisc.edu
+// Team: GC
+// TA: Dan
+// Lecturer: Florian
+// Notes to Grader: none
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Interface for the flight tracker.
+ */
 public class FTInterfacePatrickSKELETON {
 
+	/**
+	 * Adds flight information to hash table 
+	 * @param in scanner
+	 * @param flightInfo hash table
+	 */
 	private static void addFlight(Scanner in) {
 		System.out.print("Enter flight information (fight number) (time XX:XX am/pm) (status): ");
 		String input = in.nextLine();
@@ -18,6 +33,11 @@ public class FTInterfacePatrickSKELETON {
 
 	}
 	
+	/**
+	 * searches hash table for flight information based on input flight number
+	 * @param in scanner
+	 * @param flightInfo hash table
+	 */
 	private static void search(Scanner in) {
 		System.out.print("Enter flight number: ");
 		String input = in.nextLine();
@@ -31,6 +51,11 @@ public class FTInterfacePatrickSKELETON {
 		
 	}
 	
+	/**
+	 * searches for file with flight information and adds all flight information into hash table.
+	 * @param in scanner
+	 * @param flightInfo hash table
+	 */
 	private static void addfile(Scanner in) {
 //		try {
 //			System.out.print("Enter file name: ");
@@ -43,6 +68,11 @@ public class FTInterfacePatrickSKELETON {
 		System.out.println("Flight information added.");
 	}
 	
+	/**
+	 * deletes flight information from hash table based on input flight number
+	 * @param in scanner
+	 * @param flightInfo hash table
+	 */
 	private static void delete(Scanner in) {
 		System.out.print("Enter flight number to be deleted: ");
 		String flightNum = in.nextLine();
@@ -54,6 +84,10 @@ public class FTInterfacePatrickSKELETON {
 		}
 	}
 	
+	/**
+	 * runs the interface that prompts user commands and reads user commands.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Welcome to O'Hare Flight Traker!");
@@ -162,8 +196,4 @@ public class FTInterfacePatrickSKELETON {
 				"             /_____,'");
 		System.out.println("Blue skies and tailwinds!");
 	}
-
-
-
-
 }
