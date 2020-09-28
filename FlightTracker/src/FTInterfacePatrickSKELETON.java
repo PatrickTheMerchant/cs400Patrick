@@ -1,4 +1,4 @@
-import java.io.FileNotFoundException;
+iimport java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class FTInterfacePatrickSKELETON {
@@ -71,7 +71,8 @@ public class FTInterfacePatrickSKELETON {
 				"             /_____,'");
 		System.out.println("(A)dd flight information.\n" +
 				   "(C)lear flight information.\n" +
-				   "(L)oad flight information folder.\n" + 
+				   "(D)elete flight information by flight number.\n" +
+				   "(L)oad flight information.\n" + 
 				   "(S)earch for flight information by flight number.\n" + 
 				   "(?) Display this full menu.\n" + 
 				   "(Q)uit.");
@@ -83,9 +84,9 @@ public class FTInterfacePatrickSKELETON {
 			if (input.isEmpty()) {
 				System.out.println("Unknown option: " + '\0');
 				System.out.println("(A)dd flight information.\n" +
-						   "(C)lear all flight information.\n" +
+						   "(C)lear flight information.\n" +
 						   "(D)elete flight information by flight number.\n" +
-						   "(L)oad flight information folder.\n" + 
+						   "(L)oad flight information.\n" + 
 						   "(S)earch for flight information by flight number.\n" + 
 						   "(?) Display this full menu.\n" + 
 						   "(Q)uit.");
@@ -95,7 +96,8 @@ public class FTInterfacePatrickSKELETON {
 			} else if (input.toLowerCase().charAt(0) == '?') {
 				System.out.println("(A)dd flight information.\n" +
 						   "(C)lear flight information.\n" +
-						   "(L)oad flight information folder.\n" + 
+						   "(D)elete flight information by flight number.\n" +
+						   "(L)oad flight information.\n" + 
 						   "(S)earch for flight information by flight number.\n" + 
 						   "(?) Display this full menu.\n" + 
 						   "(Q)uit.");
@@ -135,7 +137,8 @@ public class FTInterfacePatrickSKELETON {
 				System.out.println("Unknown option: " + input.toLowerCase().charAt(0));
 				System.out.println("(A)dd flight information.\n" +
 						   "(C)lear flight information.\n" +
-						   "(L)oad flight information folder.\n" + 
+						   "(D)elete flight information by flight number.\n" +
+						   "(L)oad flight information.\n" + 
 						   "(S)earch for flight information by flight number.\n" + 
 						   "(?) Display this full menu.\n" + 
 						   "(Q)uit.");
@@ -145,6 +148,18 @@ public class FTInterfacePatrickSKELETON {
 		}
 		in.close();
 		System.out.println();
+		System.out.println("             .------,\r\n" + 
+				"              =\\      \\\r\n" + 
+				" .---.         =\\      \\\r\n" + 
+				" | C~ \\         =\\      \\\r\n" + 
+				" |     `----------'------'----------,\r\n" + 
+				".'     LI.-.LI LI LI LI LI LI LI.-.LI`-.\r\n" + 
+				"\\ _/.____|_|______.------,______|_|_____)\r\n" + 
+				"                 /      /\r\n" + 
+				"               =/      /\r\n" + 
+				"              =/      /\r\n" + 
+				"             =/      /\r\n" + 
+				"             /_____,'");
 		System.out.println("Blue skies and tailwinds!");
 	}
 
