@@ -1,4 +1,4 @@
-// --== CS400 File Header Information ==--
+/// --== CS400 File Header Information ==--
 // Name: Patrick Merchant
 // Email: plmerchant@wisc.edu
 // Team: GC
@@ -10,20 +10,23 @@ import java.util.Scanner;
 
 /**
  * Interface for the flight tracker.
+ * @author Patrick Merchant
  */
 public class FTInterfacePatrickSKELETON {
 
+	private static HashTableMap flightInfo = new HashTableMap(20);
 	/**
 	 * Adds flight information to hash table 
 	 * @param in scanner
 	 * @param flightInfo hash table
 	 */
 	private static void addFlight(Scanner in) {
-		System.out.print("Enter flight information (fight number) (time XX:XX am/pm) (status): ");
+		System.out.print("Enter flight information (fight number) (Destination) (time XX:XX am/pm) (status): ");
 		String input = in.nextLine();
 		if (input.split(" ").length == 4) {		
 			String fn = input.split(" ")[0];
-			String time = input.split(" ")[1] + " " + input.split(" ")[2];
+			String destination = input.split(" ")[1];
+			String time = input.split(" ")[2];
 			String stat = input.split(" ")[3];
 			// calls method adding flight info with arguments fn time stat
 			System.out.println("Flight information added");
@@ -112,7 +115,7 @@ public class FTInterfacePatrickSKELETON {
 				   "(Q)uit.");
 		System.out.println();
 		System.out.print("Action (? for full menu): ");
-		// calls method that initializes hashTable
+		HashTableMap flightInfo = new HashTableMap();            // calls method that initializes hashTable
 		while(in.hasNextLine()) { 
 			String input = in.nextLine();
 			if (input.isEmpty()) {
@@ -196,4 +199,6 @@ public class FTInterfacePatrickSKELETON {
 				"             /_____,'");
 		System.out.println("Blue skies and tailwinds!");
 	}
+
+
 }
