@@ -99,9 +99,9 @@ public class HashTableMap<KeyType, ETAType, FlightStatusType, DestinationType> i
 		if (hashTable[Math.abs(key.hashCode())%hashTable.length] != null) {
 			for(int i = 0; i < hashTable[Math.abs(key.hashCode())%hashTable.length].size(); i++) {
 				if ( hashTable[Math.abs(key.hashCode())%hashTable.length].get(i).getKey().equals(key)) {
-					return ( (String)hashTable[Math.abs(key.hashCode())%hashTable.length].get(i).getKey() 
-							+ " " + (String)hashTable[Math.abs(key.hashCode())%hashTable.length].get(i).getETA()
+					return ( (String)hashTable[Math.abs(key.hashCode())%hashTable.length].get(i).getKey() 							
 							+ " " + (String)hashTable[Math.abs(key.hashCode())%hashTable.length].get(i).getDestination()
+							+ " " + (String)hashTable[Math.abs(key.hashCode())%hashTable.length].get(i).getETA()
 							+ " " + (String)hashTable[Math.abs(key.hashCode())%hashTable.length].get(i).getFlightStatus());
 				}
 			}
@@ -151,7 +151,10 @@ public class HashTableMap<KeyType, ETAType, FlightStatusType, DestinationType> i
 		if(hashTable[Math.abs(key.hashCode())%hashTable.length] != null) {
 			for(int i = 0; i < hashTable[Math.abs(key.hashCode())%hashTable.length].size(); i++) {
 				if (hashTable[Math.abs(key.hashCode())%hashTable.length].get(i).getKey().equals(key)) {
-					String targetVal = (String) (hashTable[Math.abs(key.hashCode())%hashTable.length].get(i).getETA());    //FIXME
+					String targetVal = (String) (String)hashTable[Math.abs(key.hashCode())%hashTable.length].get(i).getKey() 							
+							+ " " + (String)hashTable[Math.abs(key.hashCode())%hashTable.length].get(i).getDestination()
+							+ " " + (String)hashTable[Math.abs(key.hashCode())%hashTable.length].get(i).getETA()
+							+ " " + (String)hashTable[Math.abs(key.hashCode())%hashTable.length].get(i).getFlightStatus();    //FIXME
 					hashTable[Math.abs(key.hashCode())%hashTable.length].remove(i);
 					return targetVal;
 				}
@@ -165,9 +168,11 @@ public class HashTableMap<KeyType, ETAType, FlightStatusType, DestinationType> i
 	 */
 	@Override
 	public void clear() {
-		for (int i = 0; i < hashTable.length; i++) {
-			hashTable[i] = null;
-		}
+		int capacity = hashTable.length;
+		hashTable = new LinkedList[capacity];
+//		for (int i = 0; i < hashTable.length; i++) {
+//			hashTable[i] = null;
+//		}
 	}
 
 }
