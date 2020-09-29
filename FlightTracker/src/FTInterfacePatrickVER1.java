@@ -29,8 +29,11 @@ public class FTInterfacePatrickVER1 {
 			String destination = input.split(" ")[1];
 			String time = input.split(" ")[2];
 			String stat = input.split(" ")[3];
-			flightInfo.put(fn, destination, time, stat);                 // calls method adding flight info with arguments fn time stat
-			System.out.println("Flight information added");
+			if(flightInfo.put(fn, destination, time, stat))               // calls method adding flight info with arguments fn time stat
+				System.out.println("Flight information added");
+			else {
+				System.out.println("Flight already exists");
+			}
 		} else {
 			System.out.println("Invalid flight information syntax.");
 		}
@@ -86,9 +89,9 @@ public class FTInterfacePatrickVER1 {
 	public static void delete(Scanner in) {
 		System.out.print("Enter flight number to be deleted: ");
 		String flightNum = in.nextLine();
-		flightInfo.remove(flightNum);  		                             //calls method that deletes flight with argument flightNum
-		if (true) {
-			System.out.println(flightNum + "deleted");
+		String removed = flightInfo.remove(flightNum);  		                             //calls method that deletes flight with argument flightNum
+		if ( removed != null ) {
+			System.out.println(removed + " deleted");
 		} else {
 			System.out.println("Flight no found.");
 		}
@@ -122,7 +125,7 @@ public class FTInterfacePatrickVER1 {
 				   "(Q)uit.");
 		System.out.println();
 		System.out.print("Action (? for full menu): ");
-		HashTableMap flightInfo = new HashTableMap(20);                     // calls method that initializes hashTable
+		//HashTableMap flightInfo = new HashTableMap(20);                     // calls method that initializes hashTable
 		while(in.hasNextLine()) { 
 			String input = in.nextLine();
 			if (input.isEmpty()) {
